@@ -2,10 +2,8 @@
 
 <suppressions>
 	<source-check>
-
-		<!-- <suppress checks="BNDExportsCheck" files="commerce-application-list/bnd\.bnd" /> -->
-
-		<!-- <suppress checks="BNDExportsCheck" files="commerce-checkout-web/bnd\.bnd" /> -->
+		<suppress checks="BNDExportsCheck" files="commerce-application-list/bnd\.bnd" />
+		<suppress checks="BNDExportsCheck" files="commerce-checkout-web/bnd\.bnd" />
 
 		<!-- <suppress checks="BNDExportsCheck" files="commerce-initializer-util/bnd\.bnd" /> -->
 
@@ -23,15 +21,11 @@
 
 		<!-- <suppress checks="BNDExportsCheck" files="commerce-shipping-web/bnd\.bnd" /> -->
 
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/context/CommerceContextFactory\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/discount/CommerceDiscountCouponCodeHelper\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/model/CommercePaymentEngine\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/model/CommerceShippingOriginLocator\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/starter/CommerceRegionsStarter\.java" /> -->
+		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/context/CommerceContextFactory\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/discount/CommerceDiscountCouponCodeHelper\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/model/CommercePaymentEngine\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/model/CommerceShippingOriginLocator\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/starter/CommerceRegionsStarter\.java" />
 
 		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-checkout-web/src/main/java/com/liferay/commerce/checkout/web/internal/portlet/action/ActionHelper\.java" /> -->
 
