@@ -4,8 +4,7 @@
 	<source-check>
 		<suppress checks="BNDExportsCheck" files="commerce-application-list/bnd\.bnd" />
 		<suppress checks="BNDExportsCheck" files="commerce-checkout-web/bnd\.bnd" />
-
-		<!-- <suppress checks="BNDExportsCheck" files="commerce-initializer-util/bnd\.bnd" /> -->
+		<suppress checks="BNDExportsCheck" files="commerce-initializer-util/bnd\.bnd" />
 
 		<!-- <suppress checks="BNDExportsCheck" files="commerce-order-web/bnd\.bnd" /> -->
 
@@ -26,20 +25,15 @@
 		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/model/CommercePaymentEngine\.java" />
 		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/model/CommerceShippingOriginLocator\.java" />
 		<suppress checks="JavaAPISignatureCheck" files="commerce-api/src/main/java/com/liferay/commerce/starter/CommerceRegionsStarter\.java" />
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-checkout-web/src/main/java/com/liferay/commerce/checkout/web/internal/portlet/action/ActionHelper\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-health-status-api/src/main/java/com/liferay/commerce/health/status/CommerceHealthStatus\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/AssetCategoriesImporter\.java" /> -->
+		<suppress checks="JavaAPISignatureCheck" files="commerce-checkout-web/src/main/java/com/liferay/commerce/checkout/web/internal/portlet/action/ActionHelper\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-health-status-api/src/main/java/com/liferay/commerce/health/status/CommerceHealthStatus\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/AssetCategoriesImporter\.java" />
 
 		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CommerceWarehousesImporter\.java" /> -->
 
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPDefinitionsImporter\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPOptionCategoriesImporter\.java" /> -->
-
-		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPOptionsImporter\.java" /> -->
+		<suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPDefinitionsImporter\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPOptionCategoriesImporter\.java" />
+		<suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPOptionsImporter\.java" />
 
 		<!-- <suppress checks="JavaAPISignatureCheck" files="commerce-initializer-util/src/main/java/com/liferay/commerce/initializer/util/CPSpecificationOptionsImporter\.java" /> -->
 
