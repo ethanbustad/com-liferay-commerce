@@ -17,6 +17,8 @@ package com.liferay.commerce.price.list.service.test;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.commerce.currency.model.CommerceCurrency;
+import com.liferay.commerce.currency.test.util.CommerceCurrencyTestUtil;
 import com.liferay.commerce.price.list.exception.DuplicateCommercePriceEntryException;
 import com.liferay.commerce.price.list.model.CommercePriceEntry;
 import com.liferay.commerce.price.list.model.CommercePriceList;
@@ -45,15 +47,14 @@ import org.frutilla.FrutillaRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
  * @author Zoltán Takács
+ * @author Ethan Bustad
  */
-@Ignore
 @RunWith(Arquillian.class)
 public class CommercePriceEntryLocalServiceTest {
 
@@ -65,6 +66,11 @@ public class CommercePriceEntryLocalServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
+
+		Currency currency = Currency.getInstance(Locale.US);
+
+		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
+			_group.getGroupId(), currency.getCurrencyCode());
 	}
 
 	@Test
@@ -91,10 +97,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be a new Price Entry on the Price List"
 		);
 
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -140,10 +146,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be a new Price Entry on the Price List"
 		);
 
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -165,6 +171,245 @@ public class CommercePriceEntryLocalServiceTest {
 		Assert.assertThat(
 			externalReferenceCode,
 			equalTo(commercePriceEntry.getExternalReferenceCode()));
+	}
+
+	@Test
+	public void testFetchCommercePriceEntry1() throws Exception {
+		frutillaRule.scenario(
+			"Fetching a Price Entry"
+		).given(
+			"A Price List"
+		).and(
+			"A Price Entry on that Price List"
+		).when(
+			"The SKU (cpInstance) of the Price Entry"
+		).and(
+			"The ID of the Price List are used to fetch a Price Entry"
+		).then(
+			"The result should be the given Price Entry"
+		);
+
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
+		Currency currency = Currency.getInstance(Locale.US);
+
+		CommercePriceList commercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceEntry commercePriceEntry =
+			CommercePriceEntryTestUtil.addCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				commercePriceList.getCommercePriceListId(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				RandomTestUtil.randomDouble());
+
+		CommercePriceEntry fetchedCommercePriceEntry =
+			_commercePriceEntryLocalService.fetchCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				commercePriceList.getCommercePriceListId());
+
+		Assert.assertThat(
+			commercePriceEntry.getCommercePriceEntryId(),
+			equalTo(fetchedCommercePriceEntry.getCommercePriceEntryId()));
+	}
+
+	@Test
+	public void testFetchCommercePriceEntry2() throws Exception {
+		frutillaRule.scenario(
+			"Fetching a Price Entry"
+		).given(
+			"A Price List"
+		).when(
+			"A random SKU (cpInstance) is used to fetch a Price Entry"
+		).then(
+			"The result should be null"
+		);
+
+		long cpInstanceId = RandomTestUtil.randomInt();
+
+		Currency currency = Currency.getInstance(Locale.US);
+
+		CommercePriceList commercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceEntry commercePriceEntry =
+			_commercePriceEntryLocalService.fetchCommercePriceEntry(
+				cpInstanceId, commercePriceList.getCommercePriceListId());
+
+		Assert.assertNull(commercePriceEntry);
+	}
+
+	@Test
+	public void testFetchCommercePriceEntry3() throws Exception {
+		frutillaRule.scenario(
+			"Fetching a Price Entry"
+		).given(
+			"A parent Price List"
+		).and(
+			"A child Price List"
+		).and(
+			"A Price Entry on the parent Price List"
+		).when(
+			"The SKU (cpInstance) of the Price Entry"
+		).and(
+			"The ID of the child Price List"
+		).and(
+			"A true useAncestors value are used to fetch a Price Entry"
+		).then(
+			"The result should be the given Price Entry"
+		);
+
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
+		Currency currency = Currency.getInstance(Locale.US);
+
+		CommercePriceList parentCommercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceList childCommercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				parentCommercePriceList.getCommercePriceListId(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceEntry commercePriceEntry =
+			CommercePriceEntryTestUtil.addCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				parentCommercePriceList.getCommercePriceListId(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				RandomTestUtil.randomDouble());
+
+		CommercePriceEntry fetchedCommercePriceEntry =
+			_commercePriceEntryLocalService.fetchCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				childCommercePriceList.getCommercePriceListId(), true);
+
+		Assert.assertThat(
+			commercePriceEntry.getCommercePriceEntryId(),
+			equalTo(fetchedCommercePriceEntry.getCommercePriceEntryId()));
+	}
+
+	@Test
+	public void testFetchCommercePriceEntry4() throws Exception {
+		frutillaRule.scenario(
+			"Fetching a Price Entry"
+		).given(
+			"A parent Price List"
+		).and(
+			"A child Price List"
+		).and(
+			"A Price Entry on the parent Price List"
+		).and(
+			"A Price Entry on the child Price List for the same SKU"
+		).when(
+			"The SKU (cpInstance) of the Price Entries"
+		).and(
+			"The ID of the child Price List"
+		).and(
+			"A true useAncestors value are used to fetch a Price Entry"
+		).then(
+			"The result should be the child Price Entry"
+		);
+
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
+		Currency currency = Currency.getInstance(Locale.US);
+
+		CommercePriceList parentCommercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceList childCommercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				parentCommercePriceList.getCommercePriceListId(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceEntryTestUtil.addCommercePriceEntry(
+			cpInstance.getCPInstanceId(),
+			parentCommercePriceList.getCommercePriceListId(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+			RandomTestUtil.randomDouble());
+
+		CommercePriceEntry childCommercePriceEntry =
+			CommercePriceEntryTestUtil.addCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				childCommercePriceList.getCommercePriceListId(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				RandomTestUtil.randomDouble());
+
+		CommercePriceEntry fetchedCommercePriceEntry =
+			_commercePriceEntryLocalService.fetchCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				childCommercePriceList.getCommercePriceListId(), true);
+
+		Assert.assertThat(
+			childCommercePriceEntry.getCommercePriceEntryId(),
+			equalTo(fetchedCommercePriceEntry.getCommercePriceEntryId()));
+	}
+
+	@Test
+	public void testFetchCommercePriceEntry5() throws Exception {
+		frutillaRule.scenario(
+			"Fetching a Price Entry"
+		).given(
+			"A parent Price List"
+		).and(
+			"A child Price List"
+		).and(
+			"A Price Entry on the parent Price List"
+		).when(
+			"The SKU (cpInstance) of the Price Entry"
+		).and(
+			"The ID of the child Price List"
+		).and(
+			"A false useAncestors value are used to fetch a Price Entry"
+		).then(
+			"The result should be null"
+		);
+
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
+		Currency currency = Currency.getInstance(Locale.US);
+
+		CommercePriceList parentCommercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceList childCommercePriceList =
+			CommercePriceListTestUtil.addCommercePriceList(
+				_group.getGroupId(), currency.getCurrencyCode(),
+				parentCommercePriceList.getCommercePriceListId(),
+				RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+				true, null, null, null);
+
+		CommercePriceEntryTestUtil.addCommercePriceEntry(
+			cpInstance.getCPInstanceId(),
+			parentCommercePriceList.getCommercePriceListId(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomDouble(),
+			RandomTestUtil.randomDouble());
+
+		CommercePriceEntry fetchedCommercePriceEntry =
+			_commercePriceEntryLocalService.fetchCommercePriceEntry(
+				cpInstance.getCPInstanceId(),
+				childCommercePriceList.getCommercePriceListId(), false);
+
+		Assert.assertNull(fetchedCommercePriceEntry);
 	}
 
 	@Test
@@ -196,10 +441,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be a new Price Entry on the Price List"
 		);
 
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -249,10 +494,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be the updated Price Entry on the Price List"
 		);
 
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -306,10 +551,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be the updated Price Entry on the Price List"
 		);
 
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -372,10 +617,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be a DuplicateCommercePriceEntryException"
 		);
 
+		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		CPInstance cpInstance = CPTestUtil.addCPInstance(_group.getGroupId());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -423,10 +668,10 @@ public class CommercePriceEntryLocalServiceTest {
 			"The result should be a NoSuchCPInstanceException"
 		);
 
+		long cpInstanceId = RandomTestUtil.randomInt();
+
 		Currency currency = Currency.getInstance(Locale.US);
 		String name = RandomTestUtil.randomString();
-
-		long cpInstanceId = RandomTestUtil.randomInt();
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -461,6 +706,9 @@ public class CommercePriceEntryLocalServiceTest {
 		Assert.assertThat(price, equalTo(actualPrice.doubleValue()));
 		Assert.assertThat(promoPrice, equalTo(actualPromoPrice.doubleValue()));
 	}
+
+	@DeleteAfterTestRun
+	private CommerceCurrency _commerceCurrency;
 
 	@Inject
 	private CommercePriceEntryLocalService _commercePriceEntryLocalService;
