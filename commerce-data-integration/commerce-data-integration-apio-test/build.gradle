@@ -3,7 +3,7 @@ copyLibs {
 }
 
 dependencies {
-	compileOnly files("../libs/portal-7.1.1.jar")
+	compileOnly files("../../libs/portal-7.1.1.jar")
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.6"
 	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
 	compileOnly group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.1.1"
