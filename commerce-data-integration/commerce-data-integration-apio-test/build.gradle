@@ -19,6 +19,8 @@ dependencies {
 	testIntegrationCompile group: "com.liferay.commerce", name: "com.liferay.commerce.product.api", version: "2.0.0"
 	testIntegrationCompile group: "com.liferay.commerce", name: "com.liferay.commerce.user.segment.api", version: "1.0.0"
 	testIntegrationCompile group: "junit", name: "junit", version: "4.12"
+	testIntegrationCompile group: "org.jboss.arquillian.junit", name: "arquillian-junit-container", version: "1.1.10.Final"
+	testIntegrationCompile group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
 	testIntegrationCompile project(":apps:commerce:commerce-data-integration:commerce-data-integration-apio-api")
 	testIntegrationCompile project(":apps:commerce:commerce-organization-test-util")
 
