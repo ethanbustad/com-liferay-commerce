@@ -113,6 +113,8 @@ import java.util.Set;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Marco Leo
  * @author Alessio Antonio Rendina
@@ -1366,6 +1368,24 @@ public class CPDefinitionLocalServiceImpl
 	}
 
 	@Override
+	public boolean isVersionable(
+		long cpDefinitionId, HttpServletRequest httpServletRequest) {
+
+		boolean versionable = GetterUtil.getBoolean(
+			httpServletRequest.getAttribute("versionable#" + cpDefinitionId),
+			true);
+
+		if (versionable) {
+			httpServletRequest.setAttribute("versionable#" + cpDefinitionId,
+				Boolean.FALSE);
+
+			return isVersionable(cpDefinitionId);
+		}
+
+		return false;
+	}
+
+	@Override
 	public void moveCPDefinitionsToTrash(long groupId, long userId)
 		throws PortalException {
 
@@ -1728,11 +1748,6 @@ public class CPDefinitionLocalServiceImpl
 
 		CPDefinition cpDefinition = cpDefinitionPersistence.findByPrimaryKey(
 			cpDefinitionId);
-
-		if (cpDefinitionLocalService.isVersionable(cpDefinition)) {
-			cpDefinition = cpDefinitionLocalService.copyCPDefinition(
-				cpDefinitionId);
-		}
 
 		cpDefinition.setIgnoreSKUCombinations(ignoreSKUCombinations);
 
