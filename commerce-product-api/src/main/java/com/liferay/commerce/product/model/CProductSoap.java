@@ -41,8 +41,7 @@ public class CProductSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setDraftDefinitionId(model.getDraftDefinitionId());
-		soapModel.setPublishedDefinitionId(model.getPublishedDefinitionId());
+		soapModel.setPublishedCPDefinitionId(model.getPublishedCPDefinitionId());
 
 		return soapModel;
 	}
@@ -159,20 +158,12 @@ public class CProductSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getDraftDefinitionId() {
-		return _draftDefinitionId;
+	public long getPublishedCPDefinitionId() {
+		return _publishedCPDefinitionId;
 	}
 
-	public void setDraftDefinitionId(long draftDefinitionId) {
-		_draftDefinitionId = draftDefinitionId;
-	}
-
-	public long getPublishedDefinitionId() {
-		return _publishedDefinitionId;
-	}
-
-	public void setPublishedDefinitionId(long publishedDefinitionId) {
-		_publishedDefinitionId = publishedDefinitionId;
+	public void setPublishedCPDefinitionId(long publishedCPDefinitionId) {
+		_publishedCPDefinitionId = publishedCPDefinitionId;
 	}
 
 	private String _uuid;
@@ -183,6 +174,5 @@ public class CProductSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _draftDefinitionId;
-	private long _publishedDefinitionId;
+	private long _publishedCPDefinitionId;
 }

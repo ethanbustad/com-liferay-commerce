@@ -77,8 +77,7 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "draftDefinitionId", Types.BIGINT },
-			{ "publishedDefinitionId", Types.BIGINT }
+			{ "publishedCPDefinitionId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -91,11 +90,10 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("draftDefinitionId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("publishedDefinitionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("publishedCPDefinitionId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table CProduct (uuid_ VARCHAR(75) null,CProductId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,draftDefinitionId LONG,publishedDefinitionId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table CProduct (uuid_ VARCHAR(75) null,CProductId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,publishedCPDefinitionId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table CProduct";
 	public static final String ORDER_BY_JPQL = " ORDER BY cProduct.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY CProduct.createDate DESC";
@@ -163,8 +161,7 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("draftDefinitionId", getDraftDefinitionId());
-		attributes.put("publishedDefinitionId", getPublishedDefinitionId());
+		attributes.put("publishedCPDefinitionId", getPublishedCPDefinitionId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -222,17 +219,11 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 			setModifiedDate(modifiedDate);
 		}
 
-		Long draftDefinitionId = (Long)attributes.get("draftDefinitionId");
+		Long publishedCPDefinitionId = (Long)attributes.get(
+				"publishedCPDefinitionId");
 
-		if (draftDefinitionId != null) {
-			setDraftDefinitionId(draftDefinitionId);
-		}
-
-		Long publishedDefinitionId = (Long)attributes.get(
-				"publishedDefinitionId");
-
-		if (publishedDefinitionId != null) {
-			setPublishedDefinitionId(publishedDefinitionId);
+		if (publishedCPDefinitionId != null) {
+			setPublishedCPDefinitionId(publishedCPDefinitionId);
 		}
 	}
 
@@ -383,23 +374,13 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 	}
 
 	@Override
-	public long getDraftDefinitionId() {
-		return _draftDefinitionId;
+	public long getPublishedCPDefinitionId() {
+		return _publishedCPDefinitionId;
 	}
 
 	@Override
-	public void setDraftDefinitionId(long draftDefinitionId) {
-		_draftDefinitionId = draftDefinitionId;
-	}
-
-	@Override
-	public long getPublishedDefinitionId() {
-		return _publishedDefinitionId;
-	}
-
-	@Override
-	public void setPublishedDefinitionId(long publishedDefinitionId) {
-		_publishedDefinitionId = publishedDefinitionId;
+	public void setPublishedCPDefinitionId(long publishedCPDefinitionId) {
+		_publishedCPDefinitionId = publishedCPDefinitionId;
 	}
 
 	@Override
@@ -447,8 +428,7 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 		cProductImpl.setUserName(getUserName());
 		cProductImpl.setCreateDate(getCreateDate());
 		cProductImpl.setModifiedDate(getModifiedDate());
-		cProductImpl.setDraftDefinitionId(getDraftDefinitionId());
-		cProductImpl.setPublishedDefinitionId(getPublishedDefinitionId());
+		cProductImpl.setPublishedCPDefinitionId(getPublishedCPDefinitionId());
 
 		cProductImpl.resetOriginalValues();
 
@@ -572,16 +552,14 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 			cProductCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		cProductCacheModel.draftDefinitionId = getDraftDefinitionId();
-
-		cProductCacheModel.publishedDefinitionId = getPublishedDefinitionId();
+		cProductCacheModel.publishedCPDefinitionId = getPublishedCPDefinitionId();
 
 		return cProductCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -599,10 +577,8 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", draftDefinitionId=");
-		sb.append(getDraftDefinitionId());
-		sb.append(", publishedDefinitionId=");
-		sb.append(getPublishedDefinitionId());
+		sb.append(", publishedCPDefinitionId=");
+		sb.append(getPublishedCPDefinitionId());
 		sb.append("}");
 
 		return sb.toString();
@@ -610,7 +586,7 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.commerce.product.model.CProduct");
@@ -649,12 +625,8 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>draftDefinitionId</column-name><column-value><![CDATA[");
-		sb.append(getDraftDefinitionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>publishedDefinitionId</column-name><column-value><![CDATA[");
-		sb.append(getPublishedDefinitionId());
+			"<column><column-name>publishedCPDefinitionId</column-name><column-value><![CDATA[");
+		sb.append(getPublishedCPDefinitionId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -680,8 +652,7 @@ public class CProductModelImpl extends BaseModelImpl<CProduct>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private long _draftDefinitionId;
-	private long _publishedDefinitionId;
+	private long _publishedCPDefinitionId;
 	private long _columnBitmask;
 	private CProduct _escapedModel;
 }

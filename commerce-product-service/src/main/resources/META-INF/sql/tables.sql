@@ -365,6 +365,5 @@ create table CProduct (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	draftDefinitionId LONG,
-	publishedDefinitionId LONG
+	publishedCPDefinitionId LONG
 );

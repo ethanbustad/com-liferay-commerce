@@ -337,19 +337,11 @@ public class CProductLocalServiceWrapper implements CProductLocalService,
 	}
 
 	@Override
-	public com.liferay.commerce.product.model.CProduct updateDraftDefinitionId(
-		long cProductId, long draftDefinitionId)
+	public com.liferay.commerce.product.model.CProduct updatePublishedCPDefinitionId(
+		long cProductId, long publishedCPDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _cProductLocalService.updateDraftDefinitionId(cProductId,
-			draftDefinitionId);
-	}
-
-	@Override
-	public com.liferay.commerce.product.model.CProduct updatePublishedDefinitionId(
-		long cProductId, long publishedDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _cProductLocalService.updatePublishedDefinitionId(cProductId,
-			publishedDefinitionId);
+		return _cProductLocalService.updatePublishedCPDefinitionId(cProductId,
+			publishedCPDefinitionId);
 	}
 
 	@Override

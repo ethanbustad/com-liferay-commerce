@@ -320,19 +320,12 @@ public class CProductLocalServiceUtil {
 		return getService().updateCProduct(cProduct);
 	}
 
-	public static com.liferay.commerce.product.model.CProduct updateDraftDefinitionId(
-		long cProductId, long draftDefinitionId)
+	public static com.liferay.commerce.product.model.CProduct updatePublishedCPDefinitionId(
+		long cProductId, long publishedCPDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateDraftDefinitionId(cProductId, draftDefinitionId);
-	}
-
-	public static com.liferay.commerce.product.model.CProduct updatePublishedDefinitionId(
-		long cProductId, long publishedDefinitionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updatePublishedDefinitionId(cProductId,
-			publishedDefinitionId);
+				   .updatePublishedCPDefinitionId(cProductId,
+			publishedCPDefinitionId);
 	}
 
 	public static CProductLocalService getService() {

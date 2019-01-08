@@ -138,9 +138,7 @@ public class CProductPersistenceTest {
 
 		newCProduct.setModifiedDate(RandomTestUtil.nextDate());
 
-		newCProduct.setDraftDefinitionId(RandomTestUtil.nextLong());
-
-		newCProduct.setPublishedDefinitionId(RandomTestUtil.nextLong());
+		newCProduct.setPublishedCPDefinitionId(RandomTestUtil.nextLong());
 
 		_cProducts.add(_persistence.update(newCProduct));
 
@@ -163,10 +161,8 @@ public class CProductPersistenceTest {
 		Assert.assertEquals(Time.getShortTimestamp(
 				existingCProduct.getModifiedDate()),
 			Time.getShortTimestamp(newCProduct.getModifiedDate()));
-		Assert.assertEquals(existingCProduct.getDraftDefinitionId(),
-			newCProduct.getDraftDefinitionId());
-		Assert.assertEquals(existingCProduct.getPublishedDefinitionId(),
-			newCProduct.getPublishedDefinitionId());
+		Assert.assertEquals(existingCProduct.getPublishedCPDefinitionId(),
+			newCProduct.getPublishedCPDefinitionId());
 	}
 
 	@Test
@@ -229,7 +225,7 @@ public class CProductPersistenceTest {
 		return OrderByComparatorFactoryUtil.create("CProduct", "uuid", true,
 			"CProductId", true, "groupId", true, "companyId", true, "userId",
 			true, "userName", true, "createDate", true, "modifiedDate", true,
-			"draftDefinitionId", true, "publishedDefinitionId", true);
+			"publishedCPDefinitionId", true);
 	}
 
 	@Test
@@ -459,9 +455,7 @@ public class CProductPersistenceTest {
 
 		cProduct.setModifiedDate(RandomTestUtil.nextDate());
 
-		cProduct.setDraftDefinitionId(RandomTestUtil.nextLong());
-
-		cProduct.setPublishedDefinitionId(RandomTestUtil.nextLong());
+		cProduct.setPublishedCPDefinitionId(RandomTestUtil.nextLong());
 
 		_cProducts.add(_persistence.update(cProduct));
 

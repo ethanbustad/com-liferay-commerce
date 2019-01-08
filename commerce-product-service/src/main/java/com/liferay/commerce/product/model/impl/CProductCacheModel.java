@@ -64,7 +64,7 @@ public class CProductCacheModel implements CacheModel<CProduct>, Externalizable 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -82,10 +82,8 @@ public class CProductCacheModel implements CacheModel<CProduct>, Externalizable 
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", draftDefinitionId=");
-		sb.append(draftDefinitionId);
-		sb.append(", publishedDefinitionId=");
-		sb.append(publishedDefinitionId);
+		sb.append(", publishedCPDefinitionId=");
+		sb.append(publishedCPDefinitionId);
 		sb.append("}");
 
 		return sb.toString();
@@ -128,8 +126,7 @@ public class CProductCacheModel implements CacheModel<CProduct>, Externalizable 
 			cProductImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		cProductImpl.setDraftDefinitionId(draftDefinitionId);
-		cProductImpl.setPublishedDefinitionId(publishedDefinitionId);
+		cProductImpl.setPublishedCPDefinitionId(publishedCPDefinitionId);
 
 		cProductImpl.resetOriginalValues();
 
@@ -151,9 +148,7 @@ public class CProductCacheModel implements CacheModel<CProduct>, Externalizable 
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 
-		draftDefinitionId = objectInput.readLong();
-
-		publishedDefinitionId = objectInput.readLong();
+		publishedCPDefinitionId = objectInput.readLong();
 	}
 
 	@Override
@@ -184,9 +179,7 @@ public class CProductCacheModel implements CacheModel<CProduct>, Externalizable 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		objectOutput.writeLong(draftDefinitionId);
-
-		objectOutput.writeLong(publishedDefinitionId);
+		objectOutput.writeLong(publishedCPDefinitionId);
 	}
 
 	public String uuid;
@@ -197,6 +190,5 @@ public class CProductCacheModel implements CacheModel<CProduct>, Externalizable 
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long draftDefinitionId;
-	public long publishedDefinitionId;
+	public long publishedCPDefinitionId;
 }
