@@ -1376,8 +1376,8 @@ public class CPDefinitionLocalServiceImpl
 			true);
 
 		if (versionable) {
-			httpServletRequest.setAttribute("versionable#" + cpDefinitionId,
-				Boolean.FALSE);
+			httpServletRequest.setAttribute(
+				"versionable#" + cpDefinitionId, Boolean.FALSE);
 
 			return isVersionable(cpDefinitionId);
 		}
