@@ -471,9 +471,7 @@ public class ActionHelper {
 			CProduct cProduct = _cProductLocalService.getCProduct(
 				cpDefinition.getCProductId());
 
-			if ((cpDefinition.getStatus() ==
-					WorkflowConstants.STATUS_APPROVED) &&
-				(cpDefinitionId != cProduct.getPublishedCPDefinitionId())) {
+			if (cpDefinitionId != cProduct.getPublishedCPDefinitionId()) {
 
 				cpDefinition = _cpDefinitionService.fetchCPDefinition(
 					cProduct.getPublishedCPDefinitionId());
