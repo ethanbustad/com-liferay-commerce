@@ -311,6 +311,10 @@ public interface CPAttachmentFileEntryLocalService extends BaseLocalService,
 	public CPAttachmentFileEntry getCPAttachmentFileEntry(
 		long CPAttachmentFileEntryId) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public CPAttachmentFileEntry getCPAttachmentFileEntry(long classNameId,
+		long classPK, long fileEntryId) throws PortalException;
+
 	/**
 	* Returns the cp attachment file entry matching the UUID and group.
 	*

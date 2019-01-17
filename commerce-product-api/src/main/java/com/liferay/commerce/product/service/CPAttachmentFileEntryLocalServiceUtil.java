@@ -351,6 +351,13 @@ public class CPAttachmentFileEntryLocalServiceUtil {
 		return getService().getCPAttachmentFileEntry(CPAttachmentFileEntryId);
 	}
 
+	public static com.liferay.commerce.product.model.CPAttachmentFileEntry getCPAttachmentFileEntry(
+		long classNameId, long classPK, long fileEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getCPAttachmentFileEntry(classNameId, classPK, fileEntryId);
+	}
+
 	/**
 	* Returns the cp attachment file entry matching the UUID and group.
 	*
