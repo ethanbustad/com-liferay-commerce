@@ -36,8 +36,8 @@ long cpDefinitionId = cpCatalogEntry.getCPDefinitionId();
 						<div id="<portlet:namespace />thumbs-container">
 
 							<%
-							for (CPAttachmentFileEntry cpAttachmentFileEntry : cpContentHelper.getImages(cpDefinitionId)) {
-								String url = cpContentHelper.getImageURL(cpAttachmentFileEntry.getFileEntry(), themeDisplay);
+							for (CPMedia imagesCPAttachmentFileEntry : cpContentHelper.getImages(cpDefinitionId, themeDisplay)) {
+								String url = imagesCPAttachmentFileEntry.getURL();
 							%>
 
 								<div class="card thumb" data-url="<%= url %>">
@@ -150,7 +150,7 @@ long cpDefinitionId = cpCatalogEntry.getCPDefinitionId();
 	<%
 	List<CPDefinitionSpecificationOptionValue> cpDefinitionSpecificationOptionValues = cpContentHelper.getCPDefinitionSpecificationOptionValues(cpDefinitionId);
 	List<CPOptionCategory> cpOptionCategories = cpContentHelper.getCPOptionCategories(scopeGroupId);
-	List<CPAttachmentFileEntry> cpAttachmentFileEntries = cpContentHelper.getCPAttachmentFileEntries(cpDefinitionId);
+	List<CPMedia> cpAttachmentFileEntries = cpContentHelper.getCPAttachmentFileEntries(cpDefinitionId, themeDisplay);
 	%>
 
 	<div class="row">
@@ -251,16 +251,15 @@ long cpDefinitionId = cpCatalogEntry.getCPDefinitionId();
 								<table class="table table-bordered table-striped">
 
 									<%
-									for (CPAttachmentFileEntry curCPAttachmentFileEntry : cpAttachmentFileEntries) {
-										FileEntry fileEntry = curCPAttachmentFileEntry.getFileEntry();
+									for (CPMedia curCPAttachmentFileEntry : cpAttachmentFileEntries) {
 									%>
 
 										<tr>
 											<td>
-												<span><%= curCPAttachmentFileEntry.getTitle(locale) %></span>
+												<span><%= curCPAttachmentFileEntry.getTitle() %></span>
 
 												<span>
-													<aui:icon cssClass="icon-monospaced" image="download" markupView="lexicon" url="<%= cpContentHelper.getDownloadFileEntryURL(fileEntry, themeDisplay) %>" />
+													<aui:icon cssClass="icon-monospaced" image="download" markupView="lexicon" url="<%= curCPAttachmentFileEntry.getUrl() %>" />
 												</span>
 											</td>
 										</tr>
