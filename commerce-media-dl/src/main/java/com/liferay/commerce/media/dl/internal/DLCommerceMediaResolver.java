@@ -76,10 +76,8 @@ public class DLCommerceMediaResolver implements CommerceMediaResolver {
 	}
 
 	@Override
-	public byte[] getMediaBytes(HttpServletRequest httpServletRequest)
+	public byte[] getMediaBytes(FileEntry fileEntry)
 		throws IOException, PortalException {
-
-		FileEntry fileEntry = getFileEntry(httpServletRequest);
 
 		return _file.getBytes(fileEntry.getContentStream());
 	}

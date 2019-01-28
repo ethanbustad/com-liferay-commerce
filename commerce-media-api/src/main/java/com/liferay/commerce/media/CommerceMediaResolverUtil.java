@@ -22,6 +22,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -38,13 +39,13 @@ public class CommerceMediaResolverUtil {
 		return commerceMediaResolver.getDownloadUrl(cpAttachmentFileEntryId);
 	}
 
-	public static byte[] getMediaBytes(HttpServletRequest httpServletRequest)
+	public static byte[] getMediaBytes(FileEntry fileEntry)
 		throws IOException, PortalException {
 
 		CommerceMediaResolver commerceMediaResolver =
 			_serviceTracker.getService();
 
-		return commerceMediaResolver.getMediaBytes(httpServletRequest);
+		return commerceMediaResolver.getMediaBytes(fileEntry);
 	}
 
 	public static String getThumbnailUrl(long cpAttachmentFileEntryId)

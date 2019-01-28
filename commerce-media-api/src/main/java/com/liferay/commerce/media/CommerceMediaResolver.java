@@ -17,6 +17,7 @@ package com.liferay.commerce.media;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public interface CommerceMediaResolver {
 	public String getDownloadUrl(long cpAttachmentFileEntryId)
 		throws PortalException;
 
-	public byte[] getMediaBytes(HttpServletRequest httpServletRequest)
+	public byte[] getMediaBytes(FileEntry fileEntry)
 		throws IOException, PortalException;
 
 	public String getThumbnailUrl(long cpAttachmentFileEntryId)
