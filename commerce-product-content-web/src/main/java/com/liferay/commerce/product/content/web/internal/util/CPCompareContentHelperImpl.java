@@ -173,17 +173,16 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 	public String getCPDefinitionSpecificationOptionValue(
 		long cpDefinitionId, long cpSpecificationOptionId, Locale locale) {
 
-		CPDefinitionSpecificationOptionValue
-			cpDefinitionSpecificationOptionValue =
+		List<CPDefinitionSpecificationOptionValue>
+			cpDefinitionSpecificationOptionValues =
 				_cpDefinitionSpecificationOptionValueLocalService.
-					fetchCPDefinitionSpecificationOptionValue(
+					getCPDefinitionSpecificationOptionValuesByC_CSO(
 						cpDefinitionId, cpSpecificationOptionId);
 
-		if (cpDefinitionSpecificationOptionValue == null) {
-			return StringPool.BLANK;
-		}
-
-		return cpDefinitionSpecificationOptionValue.getValue(locale);
+		return StringUtil.merge(
+			getCPDefinitionSpecificationOptionValues(
+				cpDefinitionSpecificationOptionValues, locale),
+			StringPool.COMMA_AND_SPACE);
 	}
 
 	@Override
@@ -308,6 +307,24 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 		}
 
 		return cpDefinitionOptionValueRelValues;
+	}
+
+	protected List<String> getCPDefinitionSpecificationOptionValues(
+		List<CPDefinitionSpecificationOptionValue>
+			cpDefinitionSpecificationOptionValues,
+		Locale locale) {
+
+		List<String> optionValues = new ArrayList<>();
+
+		for (CPDefinitionSpecificationOptionValue
+				cpDefinitionSpecificationOptionValue :
+					cpDefinitionSpecificationOptionValues) {
+
+			optionValues.add(
+				cpDefinitionSpecificationOptionValue.getValue(locale));
+		}
+
+		return optionValues;
 	}
 
 	protected List<CPSpecificationOption> getCPSpecificationOptions(
