@@ -136,9 +136,9 @@ public class CommerceAccountPersistenceTest {
 
 		newCommerceAccount.setModifiedDate(RandomTestUtil.nextDate());
 
-		newCommerceAccount.setName(RandomTestUtil.randomString());
-
 		newCommerceAccount.setParentCommerceAccountId(RandomTestUtil.nextLong());
+
+		newCommerceAccount.setName(RandomTestUtil.randomString());
 
 		newCommerceAccount.setLogoId(RandomTestUtil.nextLong());
 
@@ -184,10 +184,10 @@ public class CommerceAccountPersistenceTest {
 		Assert.assertEquals(Time.getShortTimestamp(
 				existingCommerceAccount.getModifiedDate()),
 			Time.getShortTimestamp(newCommerceAccount.getModifiedDate()));
-		Assert.assertEquals(existingCommerceAccount.getName(),
-			newCommerceAccount.getName());
 		Assert.assertEquals(existingCommerceAccount.getParentCommerceAccountId(),
 			newCommerceAccount.getParentCommerceAccountId());
+		Assert.assertEquals(existingCommerceAccount.getName(),
+			newCommerceAccount.getName());
 		Assert.assertEquals(existingCommerceAccount.getLogoId(),
 			newCommerceAccount.getLogoId());
 		Assert.assertEquals(existingCommerceAccount.getEmail(),
@@ -269,11 +269,11 @@ public class CommerceAccountPersistenceTest {
 		return OrderByComparatorFactoryUtil.create("CommerceAccount",
 			"externalReferenceCode", true, "commerceAccountId", true,
 			"companyId", true, "userId", true, "userName", true, "createDate",
-			true, "modifiedDate", true, "name", true,
-			"parentCommerceAccountId", true, "logoId", true, "email", true,
-			"taxId", true, "type", true, "active", true, "displayDate", true,
-			"expirationDate", true, "lastPublishDate", true, "status", true,
-			"statusByUserId", true, "statusByUserName", true, "statusDate", true);
+			true, "modifiedDate", true, "parentCommerceAccountId", true,
+			"name", true, "logoId", true, "email", true, "taxId", true, "type",
+			true, "active", true, "displayDate", true, "expirationDate", true,
+			"lastPublishDate", true, "status", true, "statusByUserId", true,
+			"statusByUserName", true, "statusDate", true);
 	}
 
 	@Test
@@ -511,9 +511,9 @@ public class CommerceAccountPersistenceTest {
 
 		commerceAccount.setModifiedDate(RandomTestUtil.nextDate());
 
-		commerceAccount.setName(RandomTestUtil.randomString());
-
 		commerceAccount.setParentCommerceAccountId(RandomTestUtil.nextLong());
+
+		commerceAccount.setName(RandomTestUtil.randomString());
 
 		commerceAccount.setLogoId(RandomTestUtil.nextLong());
 

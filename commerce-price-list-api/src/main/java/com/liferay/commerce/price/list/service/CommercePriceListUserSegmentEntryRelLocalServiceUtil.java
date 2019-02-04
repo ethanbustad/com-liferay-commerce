@@ -104,12 +104,6 @@ public class CommercePriceListUserSegmentEntryRelLocalServiceUtil {
 				   .deleteCommercePriceListUserSegmentEntryRel(commercePriceListUserSegmentEntryRelId);
 	}
 
-	public static void deleteCommercePriceListUserSegmentEntryRels(
-		long commercePriceListId) {
-		getService()
-			.deleteCommercePriceListUserSegmentEntryRels(commercePriceListId);
-	}
-
 	/**
 	* @throws PortalException
 	*/

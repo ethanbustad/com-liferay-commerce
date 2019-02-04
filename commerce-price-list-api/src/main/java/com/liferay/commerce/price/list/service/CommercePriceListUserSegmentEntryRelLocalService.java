@@ -112,9 +112,6 @@ public interface CommercePriceListUserSegmentEntryRelLocalService
 	public CommercePriceListUserSegmentEntryRel deleteCommercePriceListUserSegmentEntryRel(
 		long commercePriceListUserSegmentEntryRelId) throws PortalException;
 
-	public void deleteCommercePriceListUserSegmentEntryRels(
-		long commercePriceListId);
-
 	/**
 	* @throws PortalException
 	*/

@@ -95,12 +95,6 @@ public class CommercePriceListUserSegmentEntryRelLocalServiceWrapper
 		return _commercePriceListUserSegmentEntryRelLocalService.deleteCommercePriceListUserSegmentEntryRel(commercePriceListUserSegmentEntryRelId);
 	}
 
-	@Override
-	public void deleteCommercePriceListUserSegmentEntryRels(
-		long commercePriceListId) {
-		_commercePriceListUserSegmentEntryRelLocalService.deleteCommercePriceListUserSegmentEntryRels(commercePriceListId);
-	}
-
 	/**
 	* @throws PortalException
 	*/
