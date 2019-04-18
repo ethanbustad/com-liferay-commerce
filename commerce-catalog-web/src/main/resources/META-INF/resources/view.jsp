@@ -20,6 +20,7 @@
 CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 SearchContainer commerceCatalogSearchContainer = commerceCatalogDisplayContext.getSearchContainer();
+
 PortletURL portletURL = commerceCatalogDisplayContext.getPortletURL();
 
 portletURL.setParameter("searchContainerId", "commerceCatalogs");
