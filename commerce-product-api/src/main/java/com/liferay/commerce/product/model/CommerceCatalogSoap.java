@@ -40,7 +40,6 @@ public class CommerceCatalogSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setParentCommerceCatalogId(model.getParentCommerceCatalogId());
 		soapModel.setName(model.getName());
 		soapModel.setCatalogDefaultLanguageId(model.getCatalogDefaultLanguageId());
 
@@ -145,14 +144,6 @@ public class CommerceCatalogSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getParentCommerceCatalogId() {
-		return _parentCommerceCatalogId;
-	}
-
-	public void setParentCommerceCatalogId(long parentCommerceCatalogId) {
-		_parentCommerceCatalogId = parentCommerceCatalogId;
-	}
-
 	public String getName() {
 		return _name;
 	}
@@ -175,7 +166,6 @@ public class CommerceCatalogSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _parentCommerceCatalogId;
 	private String _name;
 	private String _catalogDefaultLanguageId;
 }

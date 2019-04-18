@@ -181,20 +181,6 @@ public interface CommerceCatalogModel extends AuditedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the parent commerce catalog ID of this commerce catalog.
-	 *
-	 * @return the parent commerce catalog ID of this commerce catalog
-	 */
-	public long getParentCommerceCatalogId();
-
-	/**
-	 * Sets the parent commerce catalog ID of this commerce catalog.
-	 *
-	 * @param parentCommerceCatalogId the parent commerce catalog ID of this commerce catalog
-	 */
-	public void setParentCommerceCatalogId(long parentCommerceCatalogId);
-
-	/**
 	 * Returns the name of this commerce catalog.
 	 *
 	 * @return the name of this commerce catalog

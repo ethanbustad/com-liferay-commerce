@@ -65,7 +65,7 @@ public class CommerceCatalogCacheModel implements CacheModel<CommerceCatalog>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{commerceCatalogId=");
 		sb.append(commerceCatalogId);
@@ -79,8 +79,6 @@ public class CommerceCatalogCacheModel implements CacheModel<CommerceCatalog>,
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", parentCommerceCatalogId=");
-		sb.append(parentCommerceCatalogId);
 		sb.append(", name=");
 		sb.append(name);
 		sb.append(", catalogDefaultLanguageId=");
@@ -119,8 +117,6 @@ public class CommerceCatalogCacheModel implements CacheModel<CommerceCatalog>,
 			commerceCatalogImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		commerceCatalogImpl.setParentCommerceCatalogId(parentCommerceCatalogId);
-
 		if (name == null) {
 			commerceCatalogImpl.setName("");
 		}
@@ -150,8 +146,6 @@ public class CommerceCatalogCacheModel implements CacheModel<CommerceCatalog>,
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-
-		parentCommerceCatalogId = objectInput.readLong();
 		name = objectInput.readUTF();
 		catalogDefaultLanguageId = objectInput.readUTF();
 	}
@@ -175,8 +169,6 @@ public class CommerceCatalogCacheModel implements CacheModel<CommerceCatalog>,
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		objectOutput.writeLong(parentCommerceCatalogId);
-
 		if (name == null) {
 			objectOutput.writeUTF("");
 		}
@@ -198,7 +190,6 @@ public class CommerceCatalogCacheModel implements CacheModel<CommerceCatalog>,
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public long parentCommerceCatalogId;
 	public String name;
 	public String catalogDefaultLanguageId;
 }

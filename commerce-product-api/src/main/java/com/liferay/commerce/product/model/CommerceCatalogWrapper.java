@@ -64,7 +64,6 @@ public class CommerceCatalogWrapper implements CommerceCatalog,
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("parentCommerceCatalogId", getParentCommerceCatalogId());
 		attributes.put("name", getName());
 		attributes.put("catalogDefaultLanguageId", getCatalogDefaultLanguageId());
 
@@ -107,13 +106,6 @@ public class CommerceCatalogWrapper implements CommerceCatalog,
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
-		}
-
-		Long parentCommerceCatalogId = (Long)attributes.get(
-				"parentCommerceCatalogId");
-
-		if (parentCommerceCatalogId != null) {
-			setParentCommerceCatalogId(parentCommerceCatalogId);
 		}
 
 		String name = (String)attributes.get("name");
@@ -279,16 +271,6 @@ public class CommerceCatalogWrapper implements CommerceCatalog,
 	@Override
 	public Map<java.util.Locale, String> getNameMap() {
 		return _commerceCatalog.getNameMap();
-	}
-
-	/**
-	* Returns the parent commerce catalog ID of this commerce catalog.
-	*
-	* @return the parent commerce catalog ID of this commerce catalog
-	*/
-	@Override
-	public long getParentCommerceCatalogId() {
-		return _commerceCatalog.getParentCommerceCatalogId();
 	}
 
 	/**
@@ -509,16 +491,6 @@ public class CommerceCatalogWrapper implements CommerceCatalog,
 	@Override
 	public void setNew(boolean n) {
 		_commerceCatalog.setNew(n);
-	}
-
-	/**
-	* Sets the parent commerce catalog ID of this commerce catalog.
-	*
-	* @param parentCommerceCatalogId the parent commerce catalog ID of this commerce catalog
-	*/
-	@Override
-	public void setParentCommerceCatalogId(long parentCommerceCatalogId) {
-		_commerceCatalog.setParentCommerceCatalogId(parentCommerceCatalogId);
 	}
 
 	/**

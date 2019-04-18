@@ -55,22 +55,22 @@ public class CommerceCatalogLocalServiceUtil {
 	}
 
 	public static com.liferay.commerce.product.model.CommerceCatalog addCommerceCatalog(
-		long parentCatalogId, java.util.Map<java.util.Locale, String> nameMap,
+		java.util.Map<java.util.Locale, String> nameMap,
 		String catalogDefaultLanguageId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .addCommerceCatalog(parentCatalogId, nameMap,
-			catalogDefaultLanguageId, serviceContext);
+				   .addCommerceCatalog(nameMap, catalogDefaultLanguageId,
+			serviceContext);
 	}
 
 	public static com.liferay.commerce.product.model.CommerceCatalog addCommerceCatalog(
-		long parentCatalogId, String name, String catalogDefaultLanguageId,
+		String name, String catalogDefaultLanguageId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .addCommerceCatalog(parentCatalogId, name,
-			catalogDefaultLanguageId, serviceContext);
+				   .addCommerceCatalog(name, catalogDefaultLanguageId,
+			serviceContext);
 	}
 
 	/**
@@ -279,13 +279,12 @@ public class CommerceCatalogLocalServiceUtil {
 	}
 
 	public static com.liferay.commerce.product.model.CommerceCatalog updateCommerceCatalog(
-		long commerceCatalogId, long parentCatalogId,
-		String catalogDefaultLanguageId,
+		long commerceCatalogId, String catalogDefaultLanguageId,
 		java.util.Map<java.util.Locale, String> nameMap,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateCommerceCatalog(commerceCatalogId, parentCatalogId,
+				   .updateCommerceCatalog(commerceCatalogId,
 			catalogDefaultLanguageId, nameMap, serviceContext);
 	}
 

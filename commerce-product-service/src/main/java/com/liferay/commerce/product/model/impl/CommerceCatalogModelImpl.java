@@ -84,7 +84,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentCommerceCatalogId", Types.BIGINT },
 			{ "name", Types.VARCHAR },
 			{ "catalogDefaultLanguageId", Types.VARCHAR }
 		};
@@ -97,12 +96,11 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("parentCommerceCatalogId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("catalogDefaultLanguageId", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table CommerceCatalog (commerceCatalogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentCommerceCatalogId LONG,name STRING null,catalogDefaultLanguageId VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table CommerceCatalog (commerceCatalogId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,catalogDefaultLanguageId VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table CommerceCatalog";
 	public static final String ORDER_BY_JPQL = " ORDER BY commerceCatalog.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY CommerceCatalog.createDate DESC";
@@ -140,7 +138,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setParentCommerceCatalogId(soapModel.getParentCommerceCatalogId());
 		model.setName(soapModel.getName());
 		model.setCatalogDefaultLanguageId(soapModel.getCatalogDefaultLanguageId());
 
@@ -214,7 +211,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("parentCommerceCatalogId", getParentCommerceCatalogId());
 		attributes.put("name", getName());
 		attributes.put("catalogDefaultLanguageId", getCatalogDefaultLanguageId());
 
@@ -260,13 +256,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
-		}
-
-		Long parentCommerceCatalogId = (Long)attributes.get(
-				"parentCommerceCatalogId");
-
-		if (parentCommerceCatalogId != null) {
-			setParentCommerceCatalogId(parentCommerceCatalogId);
 		}
 
 		String name = (String)attributes.get("name");
@@ -388,17 +377,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		_setModifiedDate = true;
 
 		_modifiedDate = modifiedDate;
-	}
-
-	@JSON
-	@Override
-	public long getParentCommerceCatalogId() {
-		return _parentCommerceCatalogId;
-	}
-
-	@Override
-	public void setParentCommerceCatalogId(long parentCommerceCatalogId) {
-		_parentCommerceCatalogId = parentCommerceCatalogId;
 	}
 
 	@JSON
@@ -614,7 +592,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		commerceCatalogImpl.setUserName(getUserName());
 		commerceCatalogImpl.setCreateDate(getCreateDate());
 		commerceCatalogImpl.setModifiedDate(getModifiedDate());
-		commerceCatalogImpl.setParentCommerceCatalogId(getParentCommerceCatalogId());
 		commerceCatalogImpl.setName(getName());
 		commerceCatalogImpl.setCatalogDefaultLanguageId(getCatalogDefaultLanguageId());
 
@@ -725,8 +702,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 			commerceCatalogCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		commerceCatalogCacheModel.parentCommerceCatalogId = getParentCommerceCatalogId();
-
 		commerceCatalogCacheModel.name = getName();
 
 		String name = commerceCatalogCacheModel.name;
@@ -749,7 +724,7 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{commerceCatalogId=");
 		sb.append(getCommerceCatalogId());
@@ -763,8 +738,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", parentCommerceCatalogId=");
-		sb.append(getParentCommerceCatalogId());
 		sb.append(", name=");
 		sb.append(getName());
 		sb.append(", catalogDefaultLanguageId=");
@@ -776,7 +749,7 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.commerce.product.model.CommerceCatalog");
@@ -807,10 +780,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>parentCommerceCatalogId</column-name><column-value><![CDATA[");
-		sb.append(getParentCommerceCatalogId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>name</column-name><column-value><![CDATA[");
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
@@ -837,7 +806,6 @@ public class CommerceCatalogModelImpl extends BaseModelImpl<CommerceCatalog>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private long _parentCommerceCatalogId;
 	private String _name;
 	private String _nameCurrentLanguageId;
 	private String _catalogDefaultLanguageId;

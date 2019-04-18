@@ -376,7 +376,6 @@ create table CommerceCatalog (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	parentCommerceCatalogId LONG,
 	name STRING null,
 	catalogDefaultLanguageId VARCHAR(75) null
 );
