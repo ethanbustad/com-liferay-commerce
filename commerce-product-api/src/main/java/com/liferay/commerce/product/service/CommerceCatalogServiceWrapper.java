@@ -33,6 +33,23 @@ public class CommerceCatalogServiceWrapper implements CommerceCatalogService,
 		_commerceCatalogService = commerceCatalogService;
 	}
 
+	@Override
+	public com.liferay.commerce.product.model.CommerceCatalog addCommerceCatalog(
+		long parentCatalogId, java.util.Map<java.util.Locale, String> nameMap,
+		String catalogDefaultLanguageId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceCatalogService.addCommerceCatalog(parentCatalogId,
+			nameMap, catalogDefaultLanguageId, serviceContext);
+	}
+
+	@Override
+	public com.liferay.commerce.product.model.CommerceCatalog deleteCommerceCatalog(
+		long commerceCatalogId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceCatalogService.deleteCommerceCatalog(commerceCatalogId);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -41,6 +58,17 @@ public class CommerceCatalogServiceWrapper implements CommerceCatalogService,
 	@Override
 	public String getOSGiServiceIdentifier() {
 		return _commerceCatalogService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public com.liferay.commerce.product.model.CommerceCatalog updateCommerceCatalog(
+		long commerceCatalogId, long parentCatalogId,
+		String catalogDefaultLanguageId,
+		java.util.Map<java.util.Locale, String> nameMap,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceCatalogService.updateCommerceCatalog(commerceCatalogId,
+			parentCatalogId, catalogDefaultLanguageId, nameMap, serviceContext);
 	}
 
 	@Override
