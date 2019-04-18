@@ -119,21 +119,18 @@ public class CommerceCatalogMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "commerceCatalogId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
-		long parentCatalogId = ParamUtil.getLong(
-			actionRequest, "parentCatalogId");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CommerceCatalog.class.getName(), actionRequest);
 
 		if (commerceCatalogId <= 0) {
 			return _commerceCatalogService.addCommerceCatalog(
-				parentCatalogId, nameMap, catalogDefaultLanguageId,
-				serviceContext);
+				nameMap, catalogDefaultLanguageId, serviceContext);
 		}
 
 		return _commerceCatalogService.updateCommerceCatalog(
-			commerceCatalogId, parentCatalogId, catalogDefaultLanguageId,
-			nameMap, serviceContext);
+			commerceCatalogId, catalogDefaultLanguageId, nameMap,
+			serviceContext);
 	}
 
 	@Reference
