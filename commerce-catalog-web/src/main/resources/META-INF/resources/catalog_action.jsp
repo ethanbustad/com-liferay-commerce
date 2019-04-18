@@ -29,6 +29,6 @@ CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDi
 >
 	<liferay-ui:icon
 		message="view"
-		url="<%= commerceCatalogDisplayContext.getCatalogURL(request) %>"
+		url="<%= commerceCatalogDisplayContext.getCatalogURL(request, commerceCatalog) %>"
 	/>
 </liferay-ui:icon-menu>
