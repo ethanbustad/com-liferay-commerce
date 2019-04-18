@@ -110,3 +110,7 @@ create index IX_39773566 on CProduct (uuid_[$COLUMN_LENGTH:75$], companyId);
 create unique index IX_9F9DD68 on CProduct (uuid_[$COLUMN_LENGTH:75$], groupId);
 
 create index IX_7CD290C4 on CommerceCatalog (companyId);
+
+create index IX_B9B9BBDB on CommerceChannel (commerceCatalogId);
+
+create index IX_66DB512D on CommerceChannelFilter (commerceChannelId);

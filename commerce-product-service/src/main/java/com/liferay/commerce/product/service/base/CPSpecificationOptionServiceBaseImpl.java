@@ -40,6 +40,8 @@ import com.liferay.commerce.product.service.persistence.CPSpecificationOptionPer
 import com.liferay.commerce.product.service.persistence.CPTaxCategoryPersistence;
 import com.liferay.commerce.product.service.persistence.CProductPersistence;
 import com.liferay.commerce.product.service.persistence.CommerceCatalogPersistence;
+import com.liferay.commerce.product.service.persistence.CommerceChannelFilterPersistence;
+import com.liferay.commerce.product.service.persistence.CommerceChannelPersistence;
 
 import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
 
@@ -134,6 +136,120 @@ public abstract class CPSpecificationOptionServiceBaseImpl
 	public void setCommerceCatalogPersistence(
 		CommerceCatalogPersistence commerceCatalogPersistence) {
 		this.commerceCatalogPersistence = commerceCatalogPersistence;
+	}
+
+	/**
+	 * Returns the commerce channel local service.
+	 *
+	 * @return the commerce channel local service
+	 */
+	public com.liferay.commerce.product.service.CommerceChannelLocalService getCommerceChannelLocalService() {
+		return commerceChannelLocalService;
+	}
+
+	/**
+	 * Sets the commerce channel local service.
+	 *
+	 * @param commerceChannelLocalService the commerce channel local service
+	 */
+	public void setCommerceChannelLocalService(
+		com.liferay.commerce.product.service.CommerceChannelLocalService commerceChannelLocalService) {
+		this.commerceChannelLocalService = commerceChannelLocalService;
+	}
+
+	/**
+	 * Returns the commerce channel remote service.
+	 *
+	 * @return the commerce channel remote service
+	 */
+	public com.liferay.commerce.product.service.CommerceChannelService getCommerceChannelService() {
+		return commerceChannelService;
+	}
+
+	/**
+	 * Sets the commerce channel remote service.
+	 *
+	 * @param commerceChannelService the commerce channel remote service
+	 */
+	public void setCommerceChannelService(
+		com.liferay.commerce.product.service.CommerceChannelService commerceChannelService) {
+		this.commerceChannelService = commerceChannelService;
+	}
+
+	/**
+	 * Returns the commerce channel persistence.
+	 *
+	 * @return the commerce channel persistence
+	 */
+	public CommerceChannelPersistence getCommerceChannelPersistence() {
+		return commerceChannelPersistence;
+	}
+
+	/**
+	 * Sets the commerce channel persistence.
+	 *
+	 * @param commerceChannelPersistence the commerce channel persistence
+	 */
+	public void setCommerceChannelPersistence(
+		CommerceChannelPersistence commerceChannelPersistence) {
+		this.commerceChannelPersistence = commerceChannelPersistence;
+	}
+
+	/**
+	 * Returns the commerce channel filter local service.
+	 *
+	 * @return the commerce channel filter local service
+	 */
+	public com.liferay.commerce.product.service.CommerceChannelFilterLocalService getCommerceChannelFilterLocalService() {
+		return commerceChannelFilterLocalService;
+	}
+
+	/**
+	 * Sets the commerce channel filter local service.
+	 *
+	 * @param commerceChannelFilterLocalService the commerce channel filter local service
+	 */
+	public void setCommerceChannelFilterLocalService(
+		com.liferay.commerce.product.service.CommerceChannelFilterLocalService commerceChannelFilterLocalService) {
+		this.commerceChannelFilterLocalService = commerceChannelFilterLocalService;
+	}
+
+	/**
+	 * Returns the commerce channel filter remote service.
+	 *
+	 * @return the commerce channel filter remote service
+	 */
+	public com.liferay.commerce.product.service.CommerceChannelFilterService getCommerceChannelFilterService() {
+		return commerceChannelFilterService;
+	}
+
+	/**
+	 * Sets the commerce channel filter remote service.
+	 *
+	 * @param commerceChannelFilterService the commerce channel filter remote service
+	 */
+	public void setCommerceChannelFilterService(
+		com.liferay.commerce.product.service.CommerceChannelFilterService commerceChannelFilterService) {
+		this.commerceChannelFilterService = commerceChannelFilterService;
+	}
+
+	/**
+	 * Returns the commerce channel filter persistence.
+	 *
+	 * @return the commerce channel filter persistence
+	 */
+	public CommerceChannelFilterPersistence getCommerceChannelFilterPersistence() {
+		return commerceChannelFilterPersistence;
+	}
+
+	/**
+	 * Sets the commerce channel filter persistence.
+	 *
+	 * @param commerceChannelFilterPersistence the commerce channel filter persistence
+	 */
+	public void setCommerceChannelFilterPersistence(
+		CommerceChannelFilterPersistence commerceChannelFilterPersistence) {
+		this.commerceChannelFilterPersistence = commerceChannelFilterPersistence;
 	}
 
 	/**
@@ -1476,6 +1592,18 @@ public abstract class CPSpecificationOptionServiceBaseImpl
 	protected com.liferay.commerce.product.service.CommerceCatalogService commerceCatalogService;
 	@BeanReference(type = CommerceCatalogPersistence.class)
 	protected CommerceCatalogPersistence commerceCatalogPersistence;
+	@BeanReference(type = com.liferay.commerce.product.service.CommerceChannelLocalService.class)
+	protected com.liferay.commerce.product.service.CommerceChannelLocalService commerceChannelLocalService;
+	@BeanReference(type = com.liferay.commerce.product.service.CommerceChannelService.class)
+	protected com.liferay.commerce.product.service.CommerceChannelService commerceChannelService;
+	@BeanReference(type = CommerceChannelPersistence.class)
+	protected CommerceChannelPersistence commerceChannelPersistence;
+	@BeanReference(type = com.liferay.commerce.product.service.CommerceChannelFilterLocalService.class)
+	protected com.liferay.commerce.product.service.CommerceChannelFilterLocalService commerceChannelFilterLocalService;
+	@BeanReference(type = com.liferay.commerce.product.service.CommerceChannelFilterService.class)
+	protected com.liferay.commerce.product.service.CommerceChannelFilterService commerceChannelFilterService;
+	@BeanReference(type = CommerceChannelFilterPersistence.class)
+	protected CommerceChannelFilterPersistence commerceChannelFilterPersistence;
 	@BeanReference(type = com.liferay.commerce.product.service.CPAttachmentFileEntryLocalService.class)
 	protected com.liferay.commerce.product.service.CPAttachmentFileEntryLocalService cpAttachmentFileEntryLocalService;
 	@BeanReference(type = com.liferay.commerce.product.service.CPAttachmentFileEntryService.class)
