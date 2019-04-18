@@ -68,7 +68,7 @@ CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDi
 
 		<liferay-frontend:management-bar-action-buttons>
 			<liferay-frontend:management-bar-button
-				href='<%= "javascript:" + renderResponse.getNamespace() + "deleteCommerceCatalogs();" %>'
+				href="javascript:<%= renderResponse.getNamespace() %>deleteCommerceCatalogs();"
 				icon="times"
 				label="delete"
 			/>

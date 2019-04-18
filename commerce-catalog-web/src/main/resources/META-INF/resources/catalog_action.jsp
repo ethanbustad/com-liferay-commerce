@@ -18,10 +18,6 @@
 
 <%
 CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
-
-ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
-
-CommerceCatalog commerceCatalog = (CommerceCatalog)row.getObject();
 %>
 
 <liferay-ui:icon-menu

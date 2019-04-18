@@ -84,24 +84,10 @@ public class CommerceCatalogMVCActionCommand extends BaseMVCActionCommand {
 				sendRedirect(actionRequest, actionResponse, redirect);
 			}
 		}
-		catch (Exception e) {
-			if (e instanceof PrincipalException) {
-				SessionErrors.add(actionRequest, e.getClass());
+		catch (PrincipalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass());
 
-				actionResponse.setRenderParameter("mvcPath", "/error.jsp");
-			}
-			else if (false) {
-				hideDefaultErrorMessage(actionRequest);
-
-				SessionErrors.add(actionRequest, e.getClass());
-
-				String redirect = _portal.getCurrentURL(actionRequest);
-
-				sendRedirect(actionRequest, actionResponse, redirect);
-			}
-			else {
-				throw e;
-			}
+			actionResponse.setRenderParameter("mvcPath", "/error.jsp");
 		}
 
 		hideDefaultSuccessMessage(actionRequest);
@@ -139,20 +125,15 @@ public class CommerceCatalogMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CommerceCatalog.class.getName(), actionRequest);
 
-		CommerceCatalog commerceCatalog;
-
 		if (commerceCatalogId <= 0) {
-			commerceCatalog = _commerceCatalogService.addCommerceCatalog(
+			return _commerceCatalogService.addCommerceCatalog(
 				parentCatalogId, nameMap, catalogDefaultLanguageId,
 				serviceContext);
 		}
-		else {
-			commerceCatalog = _commerceCatalogService.updateCommerceCatalog(
-				commerceCatalogId, parentCatalogId, catalogDefaultLanguageId,
-				nameMap, serviceContext);
-		}
 
-		return commerceCatalog;
+		return _commerceCatalogService.updateCommerceCatalog(
+			commerceCatalogId, parentCatalogId, catalogDefaultLanguageId,
+			nameMap, serviceContext);
 	}
 
 	@Reference
