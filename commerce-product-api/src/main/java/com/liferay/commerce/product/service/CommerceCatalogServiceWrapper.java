@@ -61,6 +61,21 @@ public class CommerceCatalogServiceWrapper implements CommerceCatalogService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.commerce.product.model.CommerceCatalog> searchCommerceCatalogs(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceCatalogService.searchCommerceCatalogs(companyId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.commerce.product.model.CommerceCatalog> searchCommerceCatalogs(
+		long companyId, String keywords, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceCatalogService.searchCommerceCatalogs(companyId,
+			keywords, start, end);
+	}
+
+	@Override
 	public com.liferay.commerce.product.model.CommerceCatalog updateCommerceCatalog(
 		long commerceCatalogId, String catalogDefaultLanguageId,
 		java.util.Map<java.util.Locale, String> nameMap,
