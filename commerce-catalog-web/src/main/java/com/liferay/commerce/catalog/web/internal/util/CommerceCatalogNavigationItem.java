@@ -78,10 +78,9 @@ public class CommerceCatalogNavigationItem implements CPNavigationItem {
 		portletURL.setParameter("mvcRenderCommandName", "editCommerceCatalog");
 		portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
-		String commerceCatalogId = ParamUtil.getString(
-			portletRequest, "commerceCatalogId");
-
-		portletURL.setParameter("commerceCatalogId", commerceCatalogId);
+		portletURL.setParameter(
+			"commerceCatalogId",
+			ParamUtil.getString(portletRequest, "commerceCatalogId"));
 
 		navigationItem.setHref(portletURL.toString());
 
