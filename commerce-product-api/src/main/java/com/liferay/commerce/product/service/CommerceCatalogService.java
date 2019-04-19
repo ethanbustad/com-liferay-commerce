@@ -26,8 +26,10 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -68,6 +70,14 @@ public interface CommerceCatalogService extends BaseService {
 	* @return the OSGi service identifier
 	*/
 	public String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<CommerceCatalog> searchCommerceCatalogs(long companyId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<CommerceCatalog> searchCommerceCatalogs(long companyId,
+		String keywords, int start, int end) throws PortalException;
 
 	public CommerceCatalog updateCommerceCatalog(long commerceCatalogId,
 		String catalogDefaultLanguageId, Map<Locale, String> nameMap,
