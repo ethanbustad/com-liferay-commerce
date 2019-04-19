@@ -114,22 +114,21 @@ public class CommerceCatalogLocalServiceImpl
 	public CommerceCatalog deleteCommerceCatalog(long commerceCatalogId)
 		throws PortalException {
 
+		// Group
+
+		Group group = getCommerceCatalogGroup(commerceCatalogId);
+
+		groupLocalService.deleteGroup(group);
+
 		// Commerce catalog
 
 		CommerceCatalog commerceCatalog = commerceCatalogPersistence.remove(
 			commerceCatalogId);
 
-		// Group
-
-		Group group = commerceCatalogLocalService.getCommerceCatalogGroup(
-			commerceCatalogId);
-
-		groupLocalService.deleteGroup(group);
-
 		CommerceCatalogScopeHelper commerceCatalogScopeHelper =
 			getCommerceCatalogScopeHelper();
 
-		commerceCatalogScopeHelper.reindex(commerceCatalog);
+		commerceCatalogScopeHelper.deleteDocument(commerceCatalog);
 
 		return commerceCatalog;
 	}

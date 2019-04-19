@@ -18,6 +18,10 @@
 
 <%
 CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
+
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+
+CommerceCatalog commerceCatalog = (CommerceCatalog)row.getObject();
 %>
 
 <liferay-ui:icon-menu
@@ -30,5 +34,16 @@ CommerceCatalogDisplayContext commerceCatalogDisplayContext = (CommerceCatalogDi
 	<liferay-ui:icon
 		message="view"
 		url="<%= commerceCatalogDisplayContext.getCatalogURL(request, commerceCatalog) %>"
+	/>
+
+	<portlet:actionURL name="editCommerceCatalog" var="deleteURL">
+		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="commerceCatalogId" value="<%= String.valueOf(commerceCatalog.getCommerceCatalogId()) %>" />
+	</portlet:actionURL>
+
+	<liferay-ui:icon-delete
+		message="delete"
+		url="<%= deleteURL %>"
 	/>
 </liferay-ui:icon-menu>

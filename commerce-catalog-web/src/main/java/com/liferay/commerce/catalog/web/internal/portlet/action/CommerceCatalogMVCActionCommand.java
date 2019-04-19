@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Locale;
 import java.util.Map;
@@ -56,11 +57,22 @@ public class CommerceCatalogMVCActionCommand extends BaseMVCActionCommand {
 	protected void deleteCommerceCatalog(ActionRequest actionRequest)
 		throws Exception {
 
+		long[] commerceCatalogIds;
+
 		long commerceCatalogId = ParamUtil.getLong(
 			actionRequest, "commerceCatalogId");
 
 		if (commerceCatalogId > 0) {
-			_commerceCatalogService.deleteCommerceCatalog(commerceCatalogId);
+			commerceCatalogIds = new long[] {commerceCatalogId};
+		}
+		else {
+			commerceCatalogIds = StringUtil.split(
+				ParamUtil.getString(actionRequest, "commerceCatalogIds"), 0L);
+		}
+
+		for (long deleteCommerceCatalogId : commerceCatalogIds) {
+			_commerceCatalogService.deleteCommerceCatalog(
+				deleteCommerceCatalogId);
 		}
 	}
 
@@ -89,8 +101,6 @@ public class CommerceCatalogMVCActionCommand extends BaseMVCActionCommand {
 
 			actionResponse.setRenderParameter("mvcPath", "/error.jsp");
 		}
-
-		hideDefaultSuccessMessage(actionRequest);
 	}
 
 	protected String getSaveAndContinueRedirect(
