@@ -69,10 +69,11 @@ public class CommerceCatalogServiceWrapper implements CommerceCatalogService,
 
 	@Override
 	public java.util.List<com.liferay.commerce.product.model.CommerceCatalog> searchCommerceCatalogs(
-		long companyId, String keywords, int start, int end)
+		long companyId, String keywords, int start, int end,
+		com.liferay.portal.kernel.search.Sort sort)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _commerceCatalogService.searchCommerceCatalogs(companyId,
-			keywords, start, end);
+			keywords, start, end, sort);
 	}
 
 	@Override
