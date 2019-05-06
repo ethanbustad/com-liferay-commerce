@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.channel.web.internal.portlet.action;
+package com.liferay.commerce.catalog.web.internal.portlet.action;
 
-import com.liferay.commerce.channel.web.internal.display.context.CPCatalogRuleDisplayContext;
+import com.liferay.commerce.catalog.web.internal.display.context.CPCatalogRuleDisplayContext;
 import com.liferay.commerce.product.catalog.rule.CPRuleTypeJSPContributorRegistry;
 import com.liferay.commerce.product.catalog.rule.CPRuleTypeRegistry;
 import com.liferay.commerce.product.constants.CPPortletKeys;
@@ -40,11 +40,11 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + CPPortletKeys.COMMERCE_CHANNELS,
-		"mvc.command.name=editCommerceChannelFilter"
+		"mvc.command.name=viewCommerceChannelFilters"
 	},
 	service = MVCRenderCommand.class
 )
-public class EditCommerceChannelFilterMVCRenderCommand
+public class ViewCommerceChannelFiltersMVCRenderCommand
 	implements MVCRenderCommand {
 
 	@Override
@@ -69,7 +69,7 @@ public class EditCommerceChannelFilterMVCRenderCommand
 			throw new PortletException(e);
 		}
 
-		return "/filters.jsp";
+		return "/channel/filters.jsp";
 	}
 
 	@Reference
