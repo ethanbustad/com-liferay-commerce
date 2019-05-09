@@ -30,8 +30,6 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Provides the remote service interface for CommerceChannel. Methods of this
@@ -57,10 +55,6 @@ public interface CommerceChannelService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CommerceChannelServiceUtil} to access the commerce channel remote service. Add custom service methods to {@link com.liferay.commerce.product.service.impl.CommerceChannelServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public CommerceChannel addCommerceChannel(Map<Locale, String> nameMap,
-		String filterType, String type, String typeSettings,
-		ServiceContext serviceContext) throws PortalException;
-
 	public CommerceChannel addCommerceChannel(String name, String filterType,
 		String type, String typeSettings, ServiceContext serviceContext)
 		throws PortalException;
@@ -87,7 +81,6 @@ public interface CommerceChannelService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	public CommerceChannel updateCommerceChannel(long commerceChannelId,
-		Map<Locale, String> nameMap, String filterType, String type,
-		String typeSettings, ServiceContext serviceContext)
-		throws PortalException;
+		String name, String filterType, String type, String typeSettings,
+		ServiceContext serviceContext) throws PortalException;
 }

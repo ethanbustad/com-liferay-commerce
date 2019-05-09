@@ -35,16 +35,6 @@ public class CommerceChannelServiceWrapper implements CommerceChannelService,
 
 	@Override
 	public com.liferay.commerce.product.model.CommerceChannel addCommerceChannel(
-		java.util.Map<java.util.Locale, String> nameMap, String filterType,
-		String type, String typeSettings,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _commerceChannelService.addCommerceChannel(nameMap, filterType,
-			type, typeSettings, serviceContext);
-	}
-
-	@Override
-	public com.liferay.commerce.product.model.CommerceChannel addCommerceChannel(
 		String name, String filterType, String type, String typeSettings,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -91,13 +81,12 @@ public class CommerceChannelServiceWrapper implements CommerceChannelService,
 
 	@Override
 	public com.liferay.commerce.product.model.CommerceChannel updateCommerceChannel(
-		long commerceChannelId,
-		java.util.Map<java.util.Locale, String> nameMap, String filterType,
-		String type, String typeSettings,
+		long commerceChannelId, String name, String filterType, String type,
+		String typeSettings,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _commerceChannelService.updateCommerceChannel(commerceChannelId,
-			nameMap, filterType, type, typeSettings, serviceContext);
+			name, filterType, type, typeSettings, serviceContext);
 	}
 
 	@Override
