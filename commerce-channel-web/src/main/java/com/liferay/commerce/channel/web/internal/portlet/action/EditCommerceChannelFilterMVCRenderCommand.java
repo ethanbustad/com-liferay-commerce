@@ -66,7 +66,7 @@ public class EditCommerceChannelFilterMVCRenderCommand
 			throw new PortletException(e);
 		}
 
-		return "/filters.jsp";
+		return "/edit_filter.jsp";
 	}
 
 	@Reference
