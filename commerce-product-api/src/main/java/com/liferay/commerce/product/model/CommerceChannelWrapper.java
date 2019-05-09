@@ -64,6 +64,7 @@ public class CommerceChannelWrapper implements CommerceChannel,
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("name", getName());
 		attributes.put("filterType", getFilterType());
 		attributes.put("type", getType());
 		attributes.put("typeSettings", getTypeSettings());
@@ -107,6 +108,12 @@ public class CommerceChannelWrapper implements CommerceChannel,
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		String name = (String)attributes.get("name");
+
+		if (name != null) {
+			setName(name);
 		}
 
 		String filterType = (String)attributes.get("filterType");
@@ -194,6 +201,16 @@ public class CommerceChannelWrapper implements CommerceChannel,
 	}
 
 	/**
+	* Returns the name of this commerce channel.
+	*
+	* @return the name of this commerce channel
+	*/
+	@Override
+	public String getName() {
+		return _commerceChannel.getName();
+	}
+
+	/**
 	* Returns the primary key of this commerce channel.
 	*
 	* @return the primary key of this commerce channel
@@ -226,6 +243,11 @@ public class CommerceChannelWrapper implements CommerceChannel,
 	@Override
 	public String getTypeSettings() {
 		return _commerceChannel.getTypeSettings();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.util.UnicodeProperties getTypeSettingsProperties() {
+		return _commerceChannel.getTypeSettingsProperties();
 	}
 
 	/**
@@ -354,6 +376,16 @@ public class CommerceChannelWrapper implements CommerceChannel,
 		_commerceChannel.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Sets the name of this commerce channel.
+	*
+	* @param name the name of this commerce channel
+	*/
+	@Override
+	public void setName(String name) {
+		_commerceChannel.setName(name);
+	}
+
 	@Override
 	public void setNew(boolean n) {
 		_commerceChannel.setNew(n);
@@ -392,6 +424,12 @@ public class CommerceChannelWrapper implements CommerceChannel,
 	@Override
 	public void setTypeSettings(String typeSettings) {
 		_commerceChannel.setTypeSettings(typeSettings);
+	}
+
+	@Override
+	public void setTypeSettingsProperties(
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties) {
+		_commerceChannel.setTypeSettingsProperties(typeSettingsProperties);
 	}
 
 	/**

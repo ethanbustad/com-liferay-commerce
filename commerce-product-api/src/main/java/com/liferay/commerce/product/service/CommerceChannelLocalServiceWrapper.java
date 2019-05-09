@@ -46,6 +46,15 @@ public class CommerceChannelLocalServiceWrapper
 		return _commerceChannelLocalService.addCommerceChannel(commerceChannel);
 	}
 
+	@Override
+	public com.liferay.commerce.product.model.CommerceChannel addCommerceChannel(
+		String name, String filterType, String type, String typeSettings,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceChannelLocalService.addCommerceChannel(name,
+			filterType, type, typeSettings, serviceContext);
+	}
+
 	/**
 	* Creates a new commerce channel with the primary key. Does not add the commerce channel to the database.
 	*
@@ -264,6 +273,16 @@ public class CommerceChannelLocalServiceWrapper
 	public com.liferay.commerce.product.model.CommerceChannel updateCommerceChannel(
 		com.liferay.commerce.product.model.CommerceChannel commerceChannel) {
 		return _commerceChannelLocalService.updateCommerceChannel(commerceChannel);
+	}
+
+	@Override
+	public com.liferay.commerce.product.model.CommerceChannel updateCommerceChannel(
+		long commerceChannelId, String name, String filterType, String type,
+		String typeSettings,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _commerceChannelLocalService.updateCommerceChannel(commerceChannelId,
+			name, filterType, type, typeSettings, serviceContext);
 	}
 
 	@Override
