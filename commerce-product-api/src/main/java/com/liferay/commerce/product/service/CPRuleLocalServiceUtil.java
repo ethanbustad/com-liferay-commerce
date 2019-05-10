@@ -55,6 +55,17 @@ public class CPRuleLocalServiceUtil {
 	}
 
 	public static com.liferay.commerce.product.model.CPRule addCPRule(
+		long classNameId, long classPK, String name, boolean active,
+		String type,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addCPRule(classNameId, classPK, name, active, type,
+			typeSettingsProperties, serviceContext);
+	}
+
+	public static com.liferay.commerce.product.model.CPRule addCPRule(
 		String name, boolean active, String type,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -69,6 +80,17 @@ public class CPRuleLocalServiceUtil {
 		return getService()
 				   .addCPRule(name, active, type, typeSettingsProperties,
 			serviceContext);
+	}
+
+	public static com.liferay.commerce.product.model.CPRule addCPRule(
+		String className, long classPK, String name, boolean active,
+		String type,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addCPRule(className, classPK, name, active, type,
+			typeSettingsProperties, serviceContext);
 	}
 
 	public static void cleanCPRulesCache(long groupId) {

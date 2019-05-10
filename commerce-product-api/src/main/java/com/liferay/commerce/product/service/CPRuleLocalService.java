@@ -78,6 +78,11 @@ public interface CPRuleLocalService extends BaseLocalService,
 	public CPRule addCPRule(CPRule cpRule);
 
 	@Indexable(type = IndexableType.REINDEX)
+	public CPRule addCPRule(long classNameId, long classPK, String name,
+		boolean active, String type, UnicodeProperties typeSettingsProperties,
+		ServiceContext serviceContext) throws PortalException;
+
+	@Indexable(type = IndexableType.REINDEX)
 	public CPRule addCPRule(String name, boolean active, String type,
 		ServiceContext serviceContext) throws PortalException;
 
@@ -85,6 +90,11 @@ public interface CPRuleLocalService extends BaseLocalService,
 	public CPRule addCPRule(String name, boolean active, String type,
 		UnicodeProperties typeSettingsProperties, ServiceContext serviceContext)
 		throws PortalException;
+
+	@Indexable(type = IndexableType.REINDEX)
+	public CPRule addCPRule(String className, long classPK, String name,
+		boolean active, String type, UnicodeProperties typeSettingsProperties,
+		ServiceContext serviceContext) throws PortalException;
 
 	public void cleanCPRulesCache(long groupId);
 

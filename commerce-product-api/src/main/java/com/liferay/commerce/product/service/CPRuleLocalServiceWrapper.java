@@ -45,6 +45,17 @@ public class CPRuleLocalServiceWrapper implements CPRuleLocalService,
 	}
 
 	@Override
+	public com.liferay.commerce.product.model.CPRule addCPRule(
+		long classNameId, long classPK, String name, boolean active,
+		String type,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _cpRuleLocalService.addCPRule(classNameId, classPK, name,
+			active, type, typeSettingsProperties, serviceContext);
+	}
+
+	@Override
 	public com.liferay.commerce.product.model.CPRule addCPRule(String name,
 		boolean active, String type,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
@@ -60,6 +71,17 @@ public class CPRuleLocalServiceWrapper implements CPRuleLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _cpRuleLocalService.addCPRule(name, active, type,
 			typeSettingsProperties, serviceContext);
+	}
+
+	@Override
+	public com.liferay.commerce.product.model.CPRule addCPRule(
+		String className, long classPK, String name, boolean active,
+		String type,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _cpRuleLocalService.addCPRule(className, classPK, name, active,
+			type, typeSettingsProperties, serviceContext);
 	}
 
 	@Override
