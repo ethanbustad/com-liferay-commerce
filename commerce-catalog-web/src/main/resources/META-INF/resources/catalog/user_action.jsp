@@ -50,13 +50,6 @@ String userId = String.valueOf(catalogUser.getUserId());
 	/>
 </liferay-ui:icon-menu>
 
-<commerce-ui:user-roles-modal
-	componentId='<%= "userRolesModal" + userId %>'
-	groupId="<%= commerceCatalogUsersDisplayContext.getCommerceCatalogGroupId() %>"
-	subtype="<%= CommerceCatalogConstants.ROLE_SUBTYPE_CATALOG %>"
-	userId="<%= catalogUser.getUserId() %>"
-/>
-
 <aui:script use="aui-base">
 
 	Liferay.componentReady('userRolesModal<%= catalogUser.getUserId() %>').then(
