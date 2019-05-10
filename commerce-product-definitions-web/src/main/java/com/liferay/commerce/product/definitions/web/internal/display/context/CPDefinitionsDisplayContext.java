@@ -245,6 +245,13 @@ public class CPDefinitionsDisplayContext
 			portletURL.setParameter("filtersValues", filtersValues);
 		}
 
+		String commerceCatalogId = ParamUtil.getString(
+			httpServletRequest, "commerceCatalogId");
+
+		if (Validator.isNotNull(commerceCatalogId)) {
+			portletURL.setParameter("commerceCatalogId", commerceCatalogId);
+		}
+
 		return portletURL;
 	}
 
@@ -296,7 +303,7 @@ public class CPDefinitionsDisplayContext
 		String filtersValues = ParamUtil.getString(
 			httpServletRequest, "filtersValues");
 
-		Long commerceCatalogId = ParamUtil.getLong(
+		long commerceCatalogId = ParamUtil.getLong(
 			httpServletRequest, "commerceCatalogId");
 
 		Group group = _commerceCatalogService.getCommerceCatalogGroup(
