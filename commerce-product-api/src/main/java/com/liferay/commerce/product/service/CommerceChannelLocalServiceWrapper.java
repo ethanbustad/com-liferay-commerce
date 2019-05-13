@@ -48,11 +48,12 @@ public class CommerceChannelLocalServiceWrapper
 
 	@Override
 	public com.liferay.commerce.product.model.CommerceChannel addCommerceChannel(
-		String name, String filterType, String type, String typeSettings,
+		String name, String filterType, String type,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _commerceChannelLocalService.addCommerceChannel(name,
-			filterType, type, typeSettings, serviceContext);
+			filterType, type, typeSettingsProperties, serviceContext);
 	}
 
 	/**
@@ -278,11 +279,11 @@ public class CommerceChannelLocalServiceWrapper
 	@Override
 	public com.liferay.commerce.product.model.CommerceChannel updateCommerceChannel(
 		long commerceChannelId, String name, String filterType, String type,
-		String typeSettings,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _commerceChannelLocalService.updateCommerceChannel(commerceChannelId,
-			name, filterType, type, typeSettings, serviceContext);
+			name, filterType, type, typeSettingsProperties, serviceContext);
 	}
 
 	@Override

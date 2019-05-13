@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.io.Serializable;
 
@@ -75,8 +76,8 @@ public interface CommerceChannelLocalService extends BaseLocalService,
 
 	@Indexable(type = IndexableType.REINDEX)
 	public CommerceChannel addCommerceChannel(String name, String filterType,
-		String type, String typeSettings, ServiceContext serviceContext)
-		throws PortalException;
+		String type, UnicodeProperties typeSettingsProperties,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Creates a new commerce channel with the primary key. Does not add the commerce channel to the database.
@@ -247,6 +248,7 @@ public interface CommerceChannelLocalService extends BaseLocalService,
 
 	@Indexable(type = IndexableType.REINDEX)
 	public CommerceChannel updateCommerceChannel(long commerceChannelId,
-		String name, String filterType, String type, String typeSettings,
-		ServiceContext serviceContext) throws PortalException;
+		String name, String filterType, String type,
+		UnicodeProperties typeSettingsProperties, ServiceContext serviceContext)
+		throws PortalException;
 }

@@ -65,23 +65,6 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class CommerceChannelServiceSoap {
-	public static com.liferay.commerce.product.model.CommerceChannelSoap addCommerceChannel(
-		String name, String filterType, String type, String typeSettings,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.commerce.product.model.CommerceChannel returnValue = CommerceChannelServiceUtil.addCommerceChannel(name,
-					filterType, type, typeSettings, serviceContext);
-
-			return com.liferay.commerce.product.model.CommerceChannelSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.commerce.product.model.CommerceChannelSoap deleteCommerceChannel(
 		long commerceChannelId) throws RemoteException {
 		try {
@@ -131,24 +114,6 @@ public class CommerceChannelServiceSoap {
 				CommerceChannelServiceUtil.getCommerceChannels(start, end);
 
 			return com.liferay.commerce.product.model.CommerceChannelSoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.commerce.product.model.CommerceChannelSoap updateCommerceChannel(
-		long commerceChannelId, String name, String filterType, String type,
-		String typeSettings,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.commerce.product.model.CommerceChannel returnValue = CommerceChannelServiceUtil.updateCommerceChannel(commerceChannelId,
-					name, filterType, type, typeSettings, serviceContext);
-
-			return com.liferay.commerce.product.model.CommerceChannelSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

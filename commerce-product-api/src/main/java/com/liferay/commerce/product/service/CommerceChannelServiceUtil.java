@@ -43,12 +43,13 @@ public class CommerceChannelServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.commerce.product.service.impl.CommerceChannelServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.commerce.product.model.CommerceChannel addCommerceChannel(
-		String name, String filterType, String type, String typeSettings,
+		String name, String filterType, String type,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .addCommerceChannel(name, filterType, type, typeSettings,
-			serviceContext);
+				   .addCommerceChannel(name, filterType, type,
+			typeSettingsProperties, serviceContext);
 	}
 
 	public static com.liferay.commerce.product.model.CommerceChannel deleteCommerceChannel(
@@ -85,12 +86,12 @@ public class CommerceChannelServiceUtil {
 
 	public static com.liferay.commerce.product.model.CommerceChannel updateCommerceChannel(
 		long commerceChannelId, String name, String filterType, String type,
-		String typeSettings,
+		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateCommerceChannel(commerceChannelId, name, filterType,
-			type, typeSettings, serviceContext);
+			type, typeSettingsProperties, serviceContext);
 	}
 
 	public static CommerceChannelService getService() {

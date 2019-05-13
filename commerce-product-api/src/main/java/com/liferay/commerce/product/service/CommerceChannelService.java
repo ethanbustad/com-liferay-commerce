@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.util.List;
 
@@ -56,8 +57,8 @@ public interface CommerceChannelService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link CommerceChannelServiceUtil} to access the commerce channel remote service. Add custom service methods to {@link com.liferay.commerce.product.service.impl.CommerceChannelServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public CommerceChannel addCommerceChannel(String name, String filterType,
-		String type, String typeSettings, ServiceContext serviceContext)
-		throws PortalException;
+		String type, UnicodeProperties typeSettingsProperties,
+		ServiceContext serviceContext) throws PortalException;
 
 	public CommerceChannel deleteCommerceChannel(long commerceChannelId)
 		throws PortalException;
@@ -81,6 +82,7 @@ public interface CommerceChannelService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	public CommerceChannel updateCommerceChannel(long commerceChannelId,
-		String name, String filterType, String type, String typeSettings,
-		ServiceContext serviceContext) throws PortalException;
+		String name, String filterType, String type,
+		UnicodeProperties typeSettingsProperties, ServiceContext serviceContext)
+		throws PortalException;
 }
