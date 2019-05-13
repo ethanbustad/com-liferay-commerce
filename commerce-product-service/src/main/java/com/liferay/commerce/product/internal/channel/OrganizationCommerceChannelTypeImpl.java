@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.util.Locale;
@@ -61,11 +62,12 @@ public class OrganizationCommerceChannelTypeImpl
 
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
 
-// organizationId
+		long[] organizationIds = ParamUtil.getLongValues(
+			httpServletRequest,
+			"CommerceChannelOrganizationsSearchContainerPrimaryKeys");
 
-		boolean orSearch = ParamUtil.getBoolean(httpServletRequest, "orSearch");
-
-		typeSettingsProperties.put("orSearch", String.valueOf(orSearch));
+		typeSettingsProperties.put(
+			"organizationIds", StringUtil.merge(organizationIds));
 
 		return typeSettingsProperties;
 	}
